@@ -12,6 +12,7 @@ contract EthPrice is usingProvable {
     constructor()
         public
     {
+        OAR = OracleAddrResolverI(0x6f485C8BF6fc43eA212E93BBF8ce046C7f1cb475);
         fetchEthPriceViaProvable();
     }
 
@@ -22,7 +23,7 @@ contract EthPrice is usingProvable {
         emit LogNewProvableQuery("Provable query in-flight!");
         provable_query(
             "URL",
-            "json(https://api.kraken.com/0/public/Ticker?pair=ETHUSD).result.XETHZUSD.c.0"
+            "json(https://gateway.ipfs.io/ipfs/QmTQfazmn4sXcte6TjVmY7NkxNqj8meqjpXxtC2xuzg6cA/1.json).name"
         );
     }
 
@@ -38,4 +39,7 @@ contract EthPrice is usingProvable {
         emit LogNewEthPrice(ethPriceCents);
     }
 
+    function() external payable{
+
+    }
 }
